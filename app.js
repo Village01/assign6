@@ -16,7 +16,7 @@ const DB_URL ='mongodb+srv://phat:minhphat@cluster0-aqqvy.mongodb.net/phat?retry
 
 mongoose.connect(DB_URL)
 .then (() => {
-    app.listen(8888, () => {
+    app.listen(process.env.PORT || 8888, () => {
         console.log('server is run');
     });
 })
