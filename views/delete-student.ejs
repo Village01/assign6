@@ -1,0 +1,14 @@
+<%- include('./includes/head.ejs') %>
+    <% students.forEach(student => {  %>
+            <div class="studentBox">
+                <p>Name: <%= student.name %> </p>
+                <p>Age: <%= student.age %> </p>
+                <p>Description: <%= student.description %></p>
+                <form action="/delete-student" method="POST">
+                    <input type="hidden" name="studentId" value="<%= student._id%>">
+                    <button type="submit">Delete</button>
+                </form>
+        </div>
+    <% }) %>
+    
+<%- include('./includes/end.ejs') %>

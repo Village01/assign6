@@ -1,0 +1,17 @@
+<%- include('./includes/head.ejs') %>
+    <form action="/create-student" class="create" method="POST">
+        <div>
+            <label for="name">Student Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="age">Student Age</label>
+            <input type="number" name="age" id="age">
+        </div>
+        <div>
+            <label for="description">Descprition</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <button type="submit">Create!</button>
+    </form>
+<%- include('./includes/end.ejs') %>

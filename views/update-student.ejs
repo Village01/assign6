@@ -1,0 +1,26 @@
+<%- include('./includes/head.ejs') %>
+    <% students.forEach(student => {  %>
+            <div class="studentBox">
+                <p>Name: <%= student.name %> </p>
+                <p>Age: <%= student.age %> </p>
+                <p>Description: <%= student.description %></p>
+                <form action="/update-student" class="update" method='PATCH'>
+                    <div>
+                        <label for="name">Student Name</label>
+                        <input type="text" name="name1" id="name1">
+                    </div>
+                    <div>
+                        <label for="age">Student Age</label>
+                        <input type="number" name="age1" id="age1">
+                    </div>
+                    <div>
+                        <label for="description">Descprition</label>
+                        <textarea name="description1" id="description1" cols="30" rows="10"></textarea>
+                    </div>
+                    <input type="hidden" name="studentId" value="<%= student._id%>">                   
+                    <button type="submit">Update</button>
+                </form>
+        </div>
+    <% }) %>
+    
+<%- include('./includes/end.ejs') %></div>
