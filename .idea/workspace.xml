@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="afaa3ec8-2871-4ec4-98bf-c6f1dbddd550" name="Default Changelist" comment="" />
+    <list default="true" id="afaa3ec8-2871-4ec4-98bf-c6f1dbddd550" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/includes/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/head.ejs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1b4UWSc5XWxC1DYPLjm0xcwRx1Y" />
   <component name="ProjectViewState">
@@ -56,6 +63,7 @@
       <workItem from="1587903592362" duration="600000" />
       <workItem from="1587976716449" duration="16000" />
       <workItem from="1589343817568" duration="9833000" />
+      <workItem from="1589649011948" duration="13000" />
     </task>
     <servers />
   </component>

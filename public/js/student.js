@@ -42,16 +42,46 @@ const deleteStudent = () => {
     })
 }
 
-const updateStudent = () => {
-    const main = document.getElementById('main')
-    fetch('/student', {
-        method:'PATCH'
-    })
-    .then(result => {
-        return result.json()
-    })
-    .then (students => {
-        let studentListElement ='';
+// const updateStudent = () => {
+//     const main = document.getElementById('main')
+//     fetch('/student', {
+//         method:'PATCH'
+//     })
+//     .then(result => {
+//         return result.json()
+//     })
+//     .then (students => {
+//         let studentListElement ='';
         
-    })
+//     })
+// }
+const URL_ROOT = 'http://localhost:8888/';
+
+const onsubmitHandler = (event, form) => {
+    event.preventDefault();
+    const name = form.parentNode.querySelector('[name=name]').value;
+    const age = parseInt(form.parentNode.querySelector('[name=age]').value);
+    const description = form.parentNode.querySelector('[name=description]').value;
+    const studentId =  form.parentNode.querySelector('[name=studentId]').value;
+    fetch('http://localhost:8888/update-student', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name:  name,
+            age: age,
+            description: description,
+            studentId: studentId
+        })
+    }).then(result => {
+            return result.json();
+        })
+        .then(result => {
+            console.log(result);
+            location.reload();
+        }).catch(e => {
+            console.log(e);
+        })
+
 }

@@ -4,8 +4,11 @@ exports.getIndext = (req, res, next) => {
     .then(students => {
         res.render('student',{
             pageTitle: 'Students',
-            students: students 
-        });
+            students: students ,
+            user:req.user
+        },
+        console.log(req.user)
+        );
     })
     .catch(e => console.log(e));
    
@@ -14,7 +17,8 @@ exports.getIndext = (req, res, next) => {
 exports.getCreateStudent = (req, res, next) => {
     
     res.render('create-student',{
-       pageTitle: 'Create student'
+       pageTitle: 'Create student',
+       user:req.user
     });
 }
 
@@ -23,7 +27,8 @@ exports.getdeletestudent = (req, res, next) => {
     .then(students => {
         res.render('delete-student',{
             pageTitle: 'Delete Student',
-            students: students 
+            students: students ,
+            user:req.user
         });
     })
     .catch(e => console.log(e));
@@ -32,12 +37,25 @@ exports.getdeletestudent = (req, res, next) => {
 exports.getupdatestudent = (req, res, next) => {
     Student.find()
     .then(students => {
-        res.render('update-student',{
-            pageTitle: 'Update Student',
-            students: students
+        if (!students) {
+          return res.redirect('/');
+        }
+        res.render('update-student', {
+          pageTitle: 'Upadate Student',
+          path: 'update-student',
+//          students: student,
+          hasError: false,
+          errorMessage: null,
+          validationErrors: [],
+          students:students,
+          user:req.user
         });
-    })
-    .catch(e => console.log(e));
+      })
+      .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
 }
 
 exports.postCreateStudent = (req, res, next) => {
@@ -72,37 +90,24 @@ exports.deleteStudent = (req, res, next) => {
     .catch(e => {console.log(e)})
 }
 
-exports.updateStudent = (req, res, next) => {
-    console.log(req.body.studentId);
-    Student.findByIdAndUpdate(req.body.studentId)
-    const age1 = req.body.age1;
-    const name1 = req.body.name1;
-    const description1 = req.body.description1;
-    const student = Student({name: name1, age: age1, description: description1});
-    student
-    .save()
+exports.updatestudent = (req, res, next) => {
+    
+    Student.findById(req.body.studentId)
+    .then(student => {
+        if(!student) {
+            return res.status(404).json({message: "user no found"});
+            
+        }
+        student.age = req.body.age || student.age;
+        student.name = req.body.name || student.name;
+        student.description = req.body.description || student.description;
+        return student.save();
+    })
     .then((result) => {
-        console.log(students)
-        res.redirect('/update-student');
+        console.log(result)
+        // res.redirect('/update-student');
+        res.status(200).json({message: "ok"})
     })
     .catch(e => {console.log(e)})
 }
-/*const deleteProduct = () => {
-    const update = document.getElementById('main');
-    fetch('/student', {
-        method: 'GET',
-    }).then(result => {
-        return result.json();
-    })
-    .then(students => {
-        let student = ''
-        students.forEach(s => {
-            student += `<div class="studentBox">
-                <p>Name: ${s.name} </p>
-                <p>Description: ${s.description} </p>
-            </div>`
-        })
-        update.innerHTML = student;
-    })
-    .catch(e => console.log(e));
-}*/
+

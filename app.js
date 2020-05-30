@@ -3,14 +3,30 @@ const path = require('path')
 const mongoose = require('mongoose');
 const studentRouter = require('./routes/student');
 const bodyParser = require('body-parser');
-const swaggerJsDoc=require('swagger-jsdoc');
-const swaggerUi=require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const passport = require('passport');
+const flash    = require('connect-flash');
+
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
+const session      = require('express-session');
 const app = express();
 
+// Bodyparser
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(studentRouter);
+
+app.use(session({ secret: 'xxxxxxxxxxxxx' })); 
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash());
+
+require('./config/passport')(passport);
+require('./routes/user.js')(app, passport);
 
 const DB_URL ='mongodb+srv://phat:minhphat@cluster0-aqqvy.mongodb.net/phat?retryWrites=true&w=majority';
 
