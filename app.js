@@ -64,13 +64,97 @@ app.use('/apidocs',swaggerUi.serve,swaggerUi.setup(swaggerDocs));
  * @swagger
  * /:
  *  get:
- *      summary: ...
- *      description: ...
- *      produces:
- *          - application/json
- *      responses:
- *          '200': 
- *              description: ....
- */
-
+ *    description: Use to request all student
+ *    responses:
+ *      '200':
+ *        description: A successful request
+ * /create-student:
+ *   post:
+ *    description: Create new student and post to database
+ *    parameters:
+ *    - name: name
+ *      description: Name of Student
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: age
+ *      description: Student Age
+ *      in: formData
+ *      type: Number
+ *    - name: description
+ *      description: Student description
+ *      in: formData
+ *      type: textarea
+ *    responses:
+ *      '200':
+ *        description: Create student success
+ * /users/register:
+ *   post:
+ *    description: Create new user and post to database
+ *    parameters:
+ *    - name: email
+ *      description: User's email
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: Password account
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses:
+ *      '200':
+ *        description: Create new basic user success
+ * /update-student:
+ *   post:
+ *    description: Update student information
+ *    parameters:
+ *    - name: name
+ *      description: name of student
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: age
+ *      description: Age of student
+ *      in: formData
+ *      required: true
+ *      type: number
+ *    - name: description
+ *      description: New Description
+ *      in: formData
+ *      type: textarea
+ *    responses:
+ *      '200':
+ *        description: success
+ * /delete-student:
+ *   post:
+ *    description: Delete product
+ *    parameters:
+ *    - name: name
+ *      description: name of student
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses:
+ *      '200':
+ *        description: Delete success
+ * /users/login:
+ *   post:
+ *    description: Login
+ *    parameters:
+ *    - name: email
+ *      description: User Email
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: User Password
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses:
+ *      '200':
+ *        description: login success
+ * 
+ */ 
 app.use(express.static(path.join(__dirname, 'public')));
