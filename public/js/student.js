@@ -63,7 +63,7 @@ const onsubmitHandler = (event, form) => {
     const age = parseInt(form.parentNode.querySelector('[name=age]').value);
     const description = form.parentNode.querySelector('[name=description]').value;
     const studentId =  form.parentNode.querySelector('[name=studentId]').value;
-    fetch('http://localhost:8888/update-student', {
+    fetch('/update-student', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
